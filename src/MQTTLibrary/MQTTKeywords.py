@@ -68,7 +68,9 @@ class MQTTKeywords(object):
         logger.info('Connecting to %s at port %s' % (broker, port))
         self._connected = False
         self._unexpected_disconnect = False
-        self._mqttc = mqtt.Client(client_id, clean_session)
+        self._mqttc = mqtt.Client(
+            mqtt.CallbackAPIVersion.VERSION1, client_id, clean_session
+        )
 
         # set callbacks
         self._mqttc.on_connect = self._on_connect
